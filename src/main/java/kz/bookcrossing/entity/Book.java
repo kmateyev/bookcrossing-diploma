@@ -1,9 +1,11 @@
 package kz.bookcrossing.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,4 +32,9 @@ public class Book {
     private String description;
     private String comments;
     private String views;
+
+    @ManyToOne
+    @JoinColumn(name = "ownerId", insertable = false, updatable = false)
+    @JsonIgnore
+    private User user;
 }

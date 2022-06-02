@@ -4,6 +4,7 @@ import io.jsonwebtoken.ExpiredJwtException;
 import kz.bookcrossing.service.impl.JwtUserDetailsService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,14 +23,16 @@ import java.io.IOException;
 @NoArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
 
+	@Autowired
 	private JwtUserDetailsService jwtUserDetailsService;
+	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 
-		final String requestTokenHeader = request.getHeader("token");
+		final String requestTokenHeader = request.getHeader("Authorization");
 
 		String username = null;
 		String jwtToken = null;
@@ -37,6 +40,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 		// only the Token
 		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 			jwtToken = requestTokenHeader.substring(7);
+			System.out.println(jwtToken);
 			try {
 				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
 			} catch (IllegalArgumentException e) {
