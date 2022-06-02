@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -21,4 +22,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Book> books;
+
+    @OneToMany(mappedBy = "userFav")
+    private List<Favorite> favorites;
 }

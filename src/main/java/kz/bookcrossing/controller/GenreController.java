@@ -17,7 +17,7 @@ public class GenreController {
     private final IGenreService service;
 
     @PostMapping
-    public Genre create(Genre genre) {
+    public Genre create(@RequestBody Genre genre) {
         return service.create(genre);
     }
 

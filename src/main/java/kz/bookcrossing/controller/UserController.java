@@ -2,20 +2,42 @@ package kz.bookcrossing.controller;
 
 import kz.bookcrossing.entity.User;
 import kz.bookcrossing.repository.UserRepository;
+import kz.bookcrossing.service.IUserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
 @AllArgsConstructor
 public class UserController {
-    private final UserRepository userRepository;
+    private final IUserService service;
+
+    @PostMapping
+    public User create(@RequestBody User user) {
+        return service.create(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id) {
+        return service.delete(id);
+    }
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userRepository.findById(id).get();
+        return service.getById(id);
+    }
+
+    @GetMapping
+    public List<User> getAll() {
+        return service.getAll();
+    }
+
+    @GetMapping("/paging")
+    public Page<User> getPage(@RequestParam Map<String, String> pageParams) {
+        return service.getPage(pageParams);
     }
 }

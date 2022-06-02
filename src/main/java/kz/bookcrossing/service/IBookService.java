@@ -1,6 +1,7 @@
 package kz.bookcrossing.service;
 
 import kz.bookcrossing.entity.Book;
+import kz.bookcrossing.entity.Favorite;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -16,4 +17,10 @@ public interface IBookService {
     Set<Book> getBooksByUserId(Long userId);
 
     Book getById(Long id);
+
+    List<Book> getFavorites(Long userId);
+
+    String addBookToFavorites(Long bookId, Long userId);
+
+    Book removeFromFavorites(Long bookId, Long userId);
 }

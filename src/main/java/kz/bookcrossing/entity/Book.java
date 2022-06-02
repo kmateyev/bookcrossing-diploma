@@ -37,4 +37,8 @@ public class Book {
     @JoinColumn(name = "ownerId", insertable = false, updatable = false)
     @JsonIgnore
     private User user;
+
+    @OneToOne
+    @JsonIgnore
+    private Favorite userFav;
 }
