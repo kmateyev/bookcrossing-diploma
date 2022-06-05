@@ -63,7 +63,7 @@ public class BookController {
         return service.getBooksByUserId(userId);
     }
 
-    @GetMapping("/get/favorites/{userId}")
+    @GetMapping("/favorite/get/{userId}")
     public List<Book> getFavorites(@PathVariable Long userId) {
         return service.getFavorites(userId);
     }

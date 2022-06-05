@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:11
+    container_name: bookcross
+    ports:
+      - 5449:5432
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: bookcross
+      POSTGRES_PASSWORD: bookcross
+      POSTGRES_DB: bookcross
