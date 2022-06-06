@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PaymentController {
-    @Value("${STRIPE_PUBLIC_KEY}")
-    private String stripePublicKey;
+//    @Value("${STRIPE_PUBLIC_KEY}")
+    private String stripePublicKey = "bookCrossingPublic";
 
     @RequestMapping("/checkout")
     public String checkout(Model model) {

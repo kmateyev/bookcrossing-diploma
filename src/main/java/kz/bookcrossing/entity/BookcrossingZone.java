@@ -13,6 +13,10 @@ public class BookcrossingZone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JoinColumn(name = "book_id")
+    @ManyToOne
+    private Book book;
     private String address;
     private String count;
 }

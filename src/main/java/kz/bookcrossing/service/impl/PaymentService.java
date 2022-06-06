@@ -6,7 +6,7 @@ import kz.bookcrossing.entity.ChargeRequest;
 import kz.bookcrossing.entity.Payment;
 import kz.bookcrossing.repository.PaymentRepository;
 import kz.bookcrossing.service.IPaymentService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,18 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@AllArgsConstructor
 public class PaymentService implements IPaymentService {
 
-    @Value("${STRIPE_SECRET_KEY}")
-    private String secretKey;
+//    @Value("${STRIPE_SECRET_KEY}")
+    private final String secretKey = "bookCrossing";
+
 
     private final PaymentRepository repository;
+
+    @Autowired
+    public PaymentService(PaymentRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Payment save(Payment payment) {

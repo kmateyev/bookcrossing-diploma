@@ -19,7 +19,6 @@ public class Book {
     private String name;
     private String yearOfPublication;
     private String cityOfPublication;
-    private String genre;
     private String author;
     private String translator;
     private String publishingHouse;
@@ -37,6 +36,10 @@ public class Book {
     @JoinColumn(name = "ownerId", insertable = false, updatable = false)
     @JsonIgnore
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id", insertable = false, updatable = false)
+    private Genre genre;
 
     @OneToOne
     @JsonIgnore

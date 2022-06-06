@@ -9,11 +9,12 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "favorite")
+@Table(name = "bookmark")
 public class Favorite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String type;
     private Long bookId;
     private Long userId;
 

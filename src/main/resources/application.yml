@@ -2,12 +2,12 @@ server:
   port: 8088
 spring:
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/tyto}
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/bookcrossing}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:123}
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 #      TODO change ddl-auto to validate
   mvc:
     pathmatch:

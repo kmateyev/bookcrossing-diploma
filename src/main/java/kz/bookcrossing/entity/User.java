@@ -23,6 +23,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Book> books;
 
+    @Column(name = "online")
+    private Boolean online;
+
     @OneToMany(mappedBy = "userFav")
     private List<Favorite> favorites;
 }
